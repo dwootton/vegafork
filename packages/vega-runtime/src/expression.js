@@ -6,6 +6,9 @@ function expression(ctx, args, code) {
   if (!code.endsWith(';')) {
     code = 'return(' + code + ');';
   }
+  console.log('ctx',ctx);
+  console.log('args',args);
+  console.log('code',code);
   const fn = Function(...args.concat(code));
   return ctx && ctx.functions ? fn.bind(ctx.functions) : fn;
 }

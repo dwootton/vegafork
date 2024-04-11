@@ -5,7 +5,7 @@ import {error} from 'vega-util';
  */
 export default function(spec) {
   var ctx = this,
-      filter = spec.filter != null ? ctx.eventExpression(spec.filter) : undefined,
+      filter = spec.filter != null ? ctx.operatorExpression(spec.filter) : undefined,
       stream = spec.stream != null ? ctx.get(spec.stream) : undefined,
       args;
 

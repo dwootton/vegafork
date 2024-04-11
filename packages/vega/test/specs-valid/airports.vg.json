@@ -7,6 +7,27 @@
 
   "signals": [
     {
+      "name": "cell", "value": null,
+      "on": [
+        {
+          "events": "@cell:pointerdown", "update": "group()"
+        },
+        {
+          "events": "@cell:pointerup",
+          "update": "null"
+        }
+      ]
+    },
+   
+    {"name":"unbrushed", "value": true},
+    { "name":"brush_anchor","on":[{"events":"@cell:pointerdown","update":"{'x1':x(cell),'y1':y(cell)}"}]},
+    { "name":"brushing", "value": null,
+      "on":[{"events":{"signal": "brush_anchor"},"update":"{'x1':brush_anchor.x1,'x2':brush_anchor.x1,'y1':brush_anchor.y1,'y2':brush_anchor.y2}"},
+      {"events":{"source": "window", "type": "pointermove", 
+      "filter":["brushing ? isValid(brushing) : null"]},"update":"{'x1':brush_anchor.x1,'x2':x(cell),'y1':brush_anchor.y1,'y2':y(cell)}"}
+      ]
+    },
+    {
       "name": "scale", "value": 1200,
       "bind": {"input": "range", "min": 500, "max": 3000}
     },
